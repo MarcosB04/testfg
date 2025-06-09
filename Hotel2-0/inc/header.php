@@ -30,12 +30,19 @@
     </div>
   </div>
 </nav>
+<?php
+if (isset($_SESSION['error_login'])) {
+    echo "<div class='alert alert-danger'>" . $_SESSION['error_login'] . "</div>";
+    unset($_SESSION['error_login']);
+}
+
+?>
 
 <!-- loginmodel -->
 <div class="modal fade" id="loginmodel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-       <form action="">
+       <form action="login.php" method="POST">
         <div class="modal-header">
             <h5 class="modal-title fs-5 d-flex align-items-center">
              <i class="bi bi-person-circle fs-3 me-2"></i>Login
@@ -45,11 +52,11 @@
         <div class="modal-body">
          <div class="mb-3">
           <label class="form-label">Email</label>
-          <input type="email" class="form-control shadow-none" aria-describedby="emailHelp">
+          <input type="email" name="email" class="form-control shadow-none" aria-describedby="emailHelp">
          </div>
          <div class="mb-3">
           <label class="form-label">Contraseña</label>
-          <input type="password" class="form-control shadow-none" aria-describedby="emailHelp">
+          <input type="password" name="clave" class="form-control shadow-none" aria-describedby="emailHelp">
          </div>
          <div class="d-flex align-items-center justify-content-between mb-2">
           <button type="submit" class="btn btn-dark shadow-none">LOGIN</button>
@@ -65,7 +72,7 @@
 <div class="modal fade" id="registermodel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form action="">
+        <form action="registro.php" method="POST">
           <div class="modal-header">
             <h5 class="modal-title fs-5 d-flex align-items-center">
                 <i class="bi bi-person-lines-fill fs-3 me-2"></i>Registro de Usuario
@@ -78,40 +85,38 @@
               <div class="row">
                 <div class="col-md-6 ps-0 mb-3">
                   <label class="form-label">Nombre</label>
-                  <input type="text" class="form-control shadow-none" aria-describedby="emailHelp">
+                  <input type="text" name="nombre" class="form-control shadow-none" aria-describedby="emailHelp">
                 </div>
                 <div class="col-md-6 ps-0 mb-3">
                   <label class="form-label">Email</label>
-                  <input type="email" class="form-control shadow-none" aria-describedby="emailHelp">
+                  <input type="email" name="email" class="form-control shadow-none" aria-describedby="emailHelp">
                 </div>    
+                <div class="col-md-6 ps-0 mb-3">
+                  <label class="form-label">DNI, Passport, ...</label>
+                  <input type="text" name="dni" class="form-control shadow-none" aria-describedby="emailHelp">
+                </div>
                 <div class="col-md-6 ps-0 mb-3">
                   <label class="form-label">Teléfono</label>
-                  <input type="number" class="form-control shadow-none" aria-describedby="emailHelp">
-                </div>
-                <div class="col-md-6 ps-0 mb-3">
-                  <label class="form-label">Foto de perfil</label>
-                  <input type="file" class="form-control shadow-none" aria-describedby="emailHelp">
+                  <input type="number" name="telefono" class="form-control shadow-none" aria-describedby="emailHelp">
                 </div>
                 <div class="col-md-12 ps-0 mb-3">
-                  <label class="form-label">Dirección</label>
-                  <textarea class="form-control shadow-none" rows="1"></textarea>
+                  <label class="form-label">Apellidos</label>
+                  <textarea class="form-control shadow-none" rows="1" name="apellidos"></textarea>
                 </div> 
-                <div class="col-md-6 ps-0 mb-3">
-                  <label class="form-label">Pincode</label>
-                  <input type="number" class="form-control shadow-none" aria-describedby="emailHelp">
-                </div>    
-                <div class="col-md-6 ps-0 mb-3">
-                  <label class="form-label">Fecha de nacimiento</label>
-                  <input type="date" class="form-control shadow-none" aria-describedby="emailHelp">
-                </div>   
+                <div class="col-md-12 ps-0 mb-3">
+                  <label class="form-label">Nacionalidad</label>
+                  <textarea class="form-control shadow-none" rows="1" name="nacionalidad"></textarea>
+                </div> 
+
                 <div class="col-md-6 ps-0 mb-3">
                   <label class="form-label">Contraseña</label>
-                  <input type="password" class="form-control shadow-none" aria-describedby="emailHelp">
-                </div>    
+                  <input type="password" name="clave" class="form-control shadow-none" aria-describedby="emailHelp">
+                </div>
+                <!--
                 <div class="col-md-6 ps-0 mb-3">
                   <label class="form-label">Confirmar Contraseña</label>
-                  <input type="password" class="form-control shadow-none" aria-describedby="emailHelp">
-                </div>
+                  <input type="password" name="confirmar_clave" class="form-control shadow-none" aria-describedby="emailHelp">
+                </div> -->
               </div>
             </div>
             <div class="text-center">
